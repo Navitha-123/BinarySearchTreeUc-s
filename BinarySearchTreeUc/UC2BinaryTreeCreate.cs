@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BinarySearchTreeUc
 {
-    public class UC1BinaryTreeAddNode<T> where T:IComparable<T>
+    internal class UC2BinaryTreeCreate<T> where T : IComparable<T>
     {
         public T NodeData { get; set; }
-        public UC1BinaryTreeAddNode<T> LeftTree { get; set; }
-        public UC1BinaryTreeAddNode<T> RightTree { get; set; }
-        public UC1BinaryTreeAddNode(T nodeData)
+        public UC2BinaryTreeCreate<T> LeftTree { get; set; }
+        public UC2BinaryTreeCreate<T> RightTree { get; set; }
+        public UC2BinaryTreeCreate(T nodeData)
         {
-            this.NodeData =  nodeData;
+            this.NodeData = nodeData;
             this.LeftTree = null;
             this.RightTree = null;
         }
@@ -25,17 +23,17 @@ namespace BinarySearchTreeUc
         public void Insert(T item)
         {
             T currentNodeValue = this.NodeData;
-            if((currentNodeValue.CompareTo(item))>0)
+            if ((currentNodeValue.CompareTo(item)) > 0)
             {
                 if (this.LeftTree == null)
-                    this.LeftTree = new UC1BinaryTreeAddNode<T>(item);
+                    this.LeftTree = new UC2BinaryTreeCreate<T>(item);
                 else
                     this.LeftTree.Insert(item);
             }
             else
             {
                 if (this.RightTree == null)
-                    this.RightTree = new UC1BinaryTreeAddNode<T>(item);
+                    this.RightTree = new UC2BinaryTreeCreate<T>(item);
                 else
                     this.RightTree.Insert(item);
             }
@@ -43,20 +41,23 @@ namespace BinarySearchTreeUc
 
         public void Display()
         {
-            if(this.LeftTree != null)
+            if (this.LeftTree != null)
             {
                 this.leftcount++;
                 this.LeftTree.Display();
             }
             Console.WriteLine(this.NodeData.ToString());
-            if(this.RightTree != null)
+            if (this.RightTree != null)
             {
                 this.rightcount++;
                 this.RightTree.Display();
             }
         }
 
+        public void Getsize()
+        {
+            Console.WriteLine("size"+":"+(1+this.leftcount+this.rightcount));
+        }
 
     }
-
 }
